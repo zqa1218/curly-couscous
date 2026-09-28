@@ -1,3 +1,3 @@
 @echo off
-cd /d "%~dp0"
-powershell -NoProfile -ExecutionPolicy Bypass -File "%~dp0启动印样台.ps1"
+rem 旧文件名保留作转发，真正逻辑在 start-planner.cmd（纯 ASCII，避免编码问题）
+call "%~dp0start-planner.cmd"
