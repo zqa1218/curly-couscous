@@ -1,0 +1,130 @@
+.page {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: var(--space-7) var(--space-5) var(--space-7);
+}
+
+.hero {
+  padding: var(--space-6) 0 var(--space-7);
+}
+
+.eyebrow {
+  font-size: var(--text-sm);
+  letter-spacing: 0.28em;
+  color: var(--chalk-teal);
+}
+
+.title {
+  margin-top: var(--space-3);
+  font-family: var(--font-chalk);
+  font-size: 64px;
+  line-height: 1.05;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+  text-shadow: 0 0 24px rgba(111, 179, 255, 0.28);
+}
+
+.lead {
+  margin-top: var(--space-4);
+  max-width: 620px;
+  font-size: var(--text-md);
+  line-height: 2;
+  color: var(--ink-soft);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-top: var(--space-5);
+}
+
+.primary,
+.ghost {
+  height: 40px;
+  padding: 0 var(--space-5);
+  border-radius: var(--radius);
+  font-size: var(--text-md);
+}
+
+.primary {
+  background: var(--cyan);
+  border: 1px solid var(--cyan);
+  color: var(--ink-inverse);
+  box-shadow: 0 0 28px rgba(111, 179, 255, 0.28);
+}
+
+.ghost {
+  border: 1px solid var(--line-strong);
+  color: var(--ink);
+}
+
+.ghost:hover {
+  background: var(--surface);
+}
+
+.meta {
+  font-size: var(--text-sm);
+  color: var(--ink-faint);
+}
+
+.flow {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+
+.step {
+  padding: var(--space-5);
+  background: rgba(20, 26, 34, 0.72);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  backdrop-filter: blur(6px);
+}
+
+.code {
+  font-family: var(--font-chalk);
+  font-size: var(--text-sm);
+  color: var(--chalk-yellow);
+}
+
+.stepTitle {
+  margin-top: var(--space-2);
+  font-size: var(--text-lg);
+  font-weight: 600;
+}
+
+.stepText {
+  margin-top: var(--space-2);
+  font-size: var(--text-sm);
+  line-height: 1.9;
+  color: var(--ink-soft);
+}
+
+.notes {
+  margin-top: var(--space-6);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.notes p {
+  font-size: var(--text-sm);
+  color: var(--ink-faint);
+}
+
+@media (max-width: 900px) {
+  .title {
+    font-size: 44px;
+  }
+
+  .flow {
+    grid-template-columns: 1fr;
+  }
+
+  .actions {
+    flex-wrap: wrap;
+  }
+}

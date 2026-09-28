@@ -1,0 +1,15 @@
+node_modules/
+dist/
+.vite/
+*.log
+
+# 本地配置与密钥
+.env
+.env.local
+data/settings.json
+
+# 用户项目数据
+projects/
+
+# 导出物
+output/

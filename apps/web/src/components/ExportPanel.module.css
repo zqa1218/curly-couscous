@@ -1,0 +1,123 @@
+.wrap {
+  max-width: 820px;
+}
+
+.card {
+  padding: var(--space-5);
+  background: var(--surface);
+  border: 1px solid var(--line);
+}
+
+.title {
+  font-size: var(--text-md);
+  font-weight: 600;
+  margin-bottom: var(--space-3);
+}
+
+.checklist {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--line);
+}
+
+.checklist li {
+  padding: var(--space-3) 0 var(--space-3) var(--space-5);
+  border-bottom: 1px solid var(--line);
+  font-size: var(--text-base);
+  color: var(--ink-soft);
+  line-height: 1.7;
+  position: relative;
+}
+
+.checklist li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 20px;
+  width: 10px;
+  height: 1px;
+  background: var(--cyan-mid);
+}
+
+.warn {
+  margin-top: var(--space-3);
+  font-size: var(--text-sm);
+  color: var(--mark);
+  line-height: 1.7;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  margin-top: var(--space-4);
+}
+
+.primary {
+  height: 36px;
+  padding: 0 var(--space-5);
+  background: var(--cyan);
+  border: 1px solid var(--cyan);
+  border-radius: var(--radius);
+  color: var(--ink-inverse);
+  font-size: var(--text-base);
+}
+
+.primary:disabled {
+  opacity: 0.7;
+  cursor: default;
+}
+
+.hint {
+  font-size: var(--text-sm);
+  color: var(--ink-faint);
+}
+
+.result {
+  margin-top: var(--space-5);
+  padding: var(--space-5);
+  background: var(--surface);
+  border: 1px solid var(--line-strong);
+}
+
+.fileName {
+  font-size: var(--text-base);
+  color: var(--ink);
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-3);
+}
+
+.download {
+  height: 34px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 var(--space-4);
+  border: 1px solid var(--cyan);
+  border-radius: var(--radius);
+  color: var(--cyan-deep);
+  font-size: var(--text-base);
+  text-decoration: none;
+}
+
+.download:hover {
+  background: var(--cyan-wash);
+}
+
+.missing {
+  font-size: var(--text-sm);
+  color: var(--mark);
+  align-self: center;
+}
+
+.error {
+  margin-top: var(--space-3);
+  font-size: var(--text-sm);
+  color: var(--mark);
+  line-height: 1.7;
+}

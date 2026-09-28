@@ -1,0 +1,256 @@
+.wrap {
+  max-width: 900px;
+}
+
+.head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-5);
+  margin-bottom: var(--space-4);
+}
+
+.title {
+  font-size: var(--text-md);
+  font-weight: 600;
+}
+
+.sub {
+  max-width: 540px;
+  margin-top: var(--space-1);
+  font-size: var(--text-sm);
+  color: var(--ink-faint);
+  line-height: 1.75;
+}
+
+.headActions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--space-2);
+  flex: 0 0 auto;
+}
+
+.count {
+  font-size: var(--text-sm);
+  color: var(--ink-faint);
+  font-variant-numeric: tabular-nums;
+}
+
+.empty {
+  padding: var(--space-5);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  font-size: var(--text-sm);
+  color: var(--ink-soft);
+  line-height: 1.8;
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.card {
+  padding: var(--space-4);
+  background: var(--surface);
+  border: 1px solid var(--line);
+}
+
+.card[data-dropped] {
+  opacity: 0.55;
+}
+
+.cardHead {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-3);
+}
+
+.sourceTag {
+  padding: 2px var(--space-2);
+  border-radius: var(--radius);
+  font-size: var(--text-xs);
+}
+
+.sourceTag[data-source="idea"] {
+  background: var(--cyan-wash);
+  color: var(--cyan-deep);
+}
+
+.sourceTag[data-source="group"] {
+  background: var(--mark-soft);
+  color: var(--mark);
+}
+
+.cardActions {
+  display: flex;
+  gap: var(--space-2);
+  margin-left: auto;
+}
+
+.sources {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-bottom: var(--space-3);
+}
+
+.sourceFigure {
+  margin: 0;
+  width: 132px;
+}
+
+.sourceFigure img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+  border: 1px solid var(--line);
+}
+
+.sourceFigure figcaption {
+  margin-top: 2px;
+  font-size: var(--text-xs);
+  color: var(--ink-faint);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sourceMissing {
+  font-size: var(--text-xs);
+  color: var(--mark);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: var(--space-3);
+}
+
+.chip {
+  padding: 0 var(--space-2);
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  background: var(--surface-sunken);
+  border-radius: var(--radius);
+  font-size: var(--text-xs);
+  color: var(--ink-soft);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  margin-bottom: var(--space-3);
+}
+
+.field span {
+  font-size: var(--text-sm);
+  color: var(--ink-soft);
+}
+
+.field textarea {
+  width: 100%;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  font-size: var(--text-sm);
+  line-height: 1.8;
+  resize: vertical;
+}
+
+.field textarea:focus {
+  border-color: var(--cyan);
+}
+
+.targets {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.targetsLabel {
+  font-size: var(--text-sm);
+  color: var(--ink-soft);
+}
+
+.target {
+  height: 26px;
+  padding: 0 var(--space-2);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  background: var(--surface);
+  font-size: var(--text-sm);
+}
+
+.target[data-active] {
+  border-color: var(--cyan);
+  background: var(--cyan-wash);
+  color: var(--cyan-deep);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  margin-top: var(--space-5);
+  padding: var(--space-4) var(--space-5);
+  background: var(--surface-raised);
+  border: 1px solid var(--line);
+}
+
+.primary,
+.ghost {
+  height: 32px;
+  padding: 0 var(--space-4);
+  border-radius: var(--radius);
+  font-size: var(--text-sm);
+}
+
+.primary {
+  background: var(--cyan);
+  border: 1px solid var(--cyan);
+  color: var(--ink-inverse);
+}
+
+.primary:disabled {
+  background: var(--surface-sunken);
+  border-color: var(--line-strong);
+  color: var(--ink-faint);
+  cursor: default;
+}
+
+.ghost {
+  border: 1px solid var(--line-strong);
+  background: var(--surface);
+}
+
+.ghost:hover {
+  background: var(--surface-sunken);
+}
+
+.status {
+  font-size: var(--text-sm);
+  color: var(--ink-faint);
+}
+
+@media (max-width: 860px) {
+  .head {
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .headActions {
+    align-items: flex-start;
+  }
+}

@@ -1,0 +1,153 @@
+/*
+ * 设计令牌：蓝晒印相
+ * 母题来自早期摄影的蓝晒工艺与印样纸，冷灰纸面、普鲁士蓝图像色、红笔批注。
+ * 界面用单一无衬线字族，靠字阶、字重与字距建立层次；衬线只出现在导出的文档里。
+ */
+:root {
+  /* 纸面与表面 */
+  --paper: #f1f3f5;
+  --surface: #ffffff;
+  --surface-sunken: #e9edf1;
+  --surface-raised: #fbfcfd;
+
+  /* 墨色 */
+  --ink: #111820;
+  --ink-soft: #5a6472;
+  --ink-faint: #8a94a3;
+  --ink-inverse: #f4f7fa;
+
+  /* 分隔线 */
+  --line: #d5dbe3;
+  --line-strong: #b6c0cc;
+
+  /* 蓝晒主色 */
+  --cyan: #1d4e89;
+  --cyan-deep: #143a68;
+  --cyan-mid: #3f76ad;
+  --cyan-soft: #c7d7e8;
+  --cyan-wash: #e8eff7;
+
+  /* 批注与状态 */
+  --mark: #b23a2e;
+  --mark-soft: #f0dcd9;
+  --ok: #2f6b4f;
+  --ok-soft: #dcebe2;
+
+  /* 字体 */
+  --font-ui: "Source Han Sans SC", "Noto Sans SC", "PingFang SC", "微软雅黑",
+    "Microsoft YaHei", system-ui, sans-serif;
+  --font-serif: "Source Han Serif SC", "Noto Serif SC", "宋体", "SimSun", serif;
+
+  /* 字阶 */
+  --text-xs: 11px;
+  --text-sm: 12px;
+  --text-base: 13px;
+  --text-md: 15px;
+  --text-lg: 18px;
+  --text-xl: 22px;
+  --text-2xl: 28px;
+
+  /* 间距 */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+
+  /* 结构：不做圆角堆叠，用线分层次 */
+  --radius: 2px;
+  --nav-width: 232px;
+  --dock-width: 344px;
+  --header-height: 52px;
+}
+
+/* 窄窗口下先收窄两栏，再不行就改成上下堆叠 */
+@media (max-width: 1080px) {
+  :root {
+    --nav-width: 196px;
+    --dock-width: 300px;
+  }
+}
+
+/*
+ * 主题覆盖：黑板粉笔
+ * 深色黑板底、粉笔白字、彩色粉笔做强调。放在文件末尾，覆盖上面的原始值。
+ */
+:root {
+  --paper: #0c1016;
+  --surface: #141a22;
+  --surface-sunken: #0f141a;
+  --surface-raised: #1a222c;
+
+  --ink: #e9eff6;
+  --ink-soft: #a9b6c4;
+  --ink-faint: #6d7b8a;
+  --ink-inverse: #0c1016;
+
+  --line: rgba(233, 239, 246, 0.1);
+  --line-strong: rgba(233, 239, 246, 0.24);
+
+  --cyan: #6fb3ff;
+  --cyan-deep: #a9d1ff;
+  --cyan-mid: #4d8fd6;
+  --cyan-soft: rgba(111, 179, 255, 0.3);
+  --cyan-wash: rgba(111, 179, 255, 0.12);
+
+  --mark: #ff9db0;
+  --mark-soft: rgba(255, 157, 176, 0.16);
+  --ok: #7fe3a1;
+  --ok-soft: rgba(127, 227, 161, 0.16);
+
+  /* 额外汇总用的粉笔色，首页与强调处使用 */
+  --chalk-yellow: #ffd166;
+  --chalk-teal: #5cd8c9;
+  --chalk-violet: #b39dff;
+
+  --glow-blue: rgba(111, 179, 255, 0.16);
+  --glow-teal: rgba(92, 216, 201, 0.12);
+  --glow-violet: rgba(179, 157, 255, 0.12);
+
+  --radius: 4px;
+  --radius-lg: 10px;
+  --header-height: 56px;
+}
+
+/*
+ * 阶段标记色（三段式）
+ * 把 --cyan 系列按当前阶段重映射，按钮、选中态、导航、表头会整体跟着走，
+ * 底色与边框不动。data-stage 由 App 挂在工作台外层。
+ */
+[data-stage="S0"] {
+  --cyan: #6fb3ff; --cyan-deep: #aed3ff;
+  --cyan-soft: rgba(111, 179, 255, 0.3); --cyan-wash: rgba(111, 179, 255, 0.12);
+}
+[data-stage="S1"] {
+  --cyan: #5cd8c9; --cyan-deep: #a6ece3;
+  --cyan-soft: rgba(92, 216, 201, 0.3); --cyan-wash: rgba(92, 216, 201, 0.12);
+}
+[data-stage="S2"] {
+  --cyan: #5ec8e8; --cyan-deep: #a8e2f5;
+  --cyan-soft: rgba(94, 200, 232, 0.3); --cyan-wash: rgba(94, 200, 232, 0.12);
+}
+[data-stage="S3"] {
+  --cyan: #ffd166; --cyan-deep: #ffe4a8;
+  --cyan-soft: rgba(255, 209, 102, 0.3); --cyan-wash: rgba(255, 209, 102, 0.12);
+}
+[data-stage="S4"] {
+  --cyan: #ffa96b; --cyan-deep: #ffd0ac;
+  --cyan-soft: rgba(255, 169, 107, 0.3); --cyan-wash: rgba(255, 169, 107, 0.12);
+}
+[data-stage="S5"] {
+  --cyan: #ff9db0; --cyan-deep: #ffc9d3;
+  --cyan-soft: rgba(255, 157, 176, 0.3); --cyan-wash: rgba(255, 157, 176, 0.12);
+}
+[data-stage="S6"] {
+  --cyan: #b39dff; --cyan-deep: #d6c9ff;
+  --cyan-soft: rgba(179, 157, 255, 0.3); --cyan-wash: rgba(179, 157, 255, 0.12);
+}
+[data-stage="S7"] {
+  --cyan: #7fe3a1; --cyan-deep: #b8f0c9;
+  --cyan-soft: rgba(127, 227, 161, 0.3); --cyan-wash: rgba(127, 227, 161, 0.12);
+}

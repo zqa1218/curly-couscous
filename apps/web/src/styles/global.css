@@ -1,0 +1,93 @@
+@import "./tokens.css";
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-ui);
+  font-size: var(--text-base);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+input,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 2px;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--line-strong);
+  border: 3px solid transparent;
+  background-clip: content-box;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/*
+ * 黑板粉笔主题：深色底 + 三团流体光晕。
+ * 覆盖上面的浅色底，放在文件末尾保证生效。
+ */
+body {
+  background-color: #0c1016;
+  background-image:
+    radial-gradient(900px 620px at 12% -10%, rgba(111, 179, 255, 0.16), transparent 65%),
+    radial-gradient(760px 520px at 92% 6%, rgba(179, 157, 255, 0.14), transparent 68%),
+    radial-gradient(680px 520px at 58% 108%, rgba(92, 216, 201, 0.12), transparent 70%);
+  background-attachment: fixed;
+}
+
+input,
+textarea,
+select {
+  background: var(--surface-sunken);
+}
+
+a {
+  color: var(--cyan-deep);
+}

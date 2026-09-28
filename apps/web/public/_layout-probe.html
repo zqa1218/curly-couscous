@@ -1,0 +1,28 @@
+<!doctype html>
+<!--
+  仅用于开发期视觉检查：把应用按 1440x900 渲染后整体缩小，
+  这样在窄面板里也能确认桌面三栏布局。不参与生产构建的界面。
+-->
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <title>layout probe</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        background: #f1f3f5;
+      }
+      .frame {
+        width: 1440px;
+        height: 900px;
+        border: 0;
+        transform: scale(0.32);
+        transform-origin: top left;
+      }
+    </style>
+  </head>
+  <body>
+    <iframe class="frame" src="/"></iframe>
+  </body>
+</html>

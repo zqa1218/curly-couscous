@@ -1,0 +1,14 @@
+{
+  "name": "photo-studio-planner",
+  "private": true,
+  "version": "0.1.0",
+  "description": "本地优先的摄影企划工作台",
+  "packageManager": "pnpm@11.25.0",
+  "scripts": {
+    "dev": "pnpm -r --parallel dev",
+    "build": "pnpm -r build",
+    "typecheck": "pnpm -r typecheck",
+    "server": "pnpm --filter @studio/server dev",
+    "web": "pnpm --filter @studio/web dev"
+  }
+}
