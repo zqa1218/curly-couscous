@@ -17,7 +17,8 @@ import build_shoot_plan as base  # noqa: E402
 from export_project_docx import docx_to_pdf  # noqa: E402
 
 REPO = Path(__file__).resolve().parent.parent
-QA = REPO / "docs" / "qa" / "hires"
+# 截图由 Chrome 无头模式输出：1440×900 纯页面区域，无浏览器外壳
+QA = REPO / "docs" / "qa" / "final"
 
 
 def picture(doc, name: str, caption: str, width_cm: float = 15.0) -> None:

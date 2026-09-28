@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <title>截图清单</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 32px;
+        background: #0c1016;
+        color: #e9eff6;
+        font-family: "Microsoft YaHei", system-ui, sans-serif;
+        line-height: 1.8;
+      }
+      h1 { font-size: 20px; margin: 0 0 8px; }
+      p { color: #a9b6c4; font-size: 13px; margin: 4px 0 16px; }
+      .tip {
+        padding: 12px 16px;
+        background: #141a22;
+        border-left: 2px solid #6fb3ff;
+        font-size: 13px;
+        color: #a9b6c4;
+        margin-bottom: 20px;
+      }
+      table { border-collapse: collapse; width: 100%; max-width: 860px; }
+      th, td { border: 1px solid rgba(233,239,246,.12); padding: 8px 12px; font-size: 13px; text-align: left; }
+      th { background: #1a222c; color: #a9b6c4; font-weight: 400; }
+      a { color: #6fb3ff; }
+      code { background: #0f141a; padding: 1px 6px; border-radius: 3px; color: #a9d1ff; }
+      tr:target td { background: rgba(111,179,255,.12); }
+    </style>
+  </head>
+  <body>
+    <h1>教程截图清单</h1>
+    <p>十张图，命名必须和左边一致，放进 <code>docs/qa/hires/</code>。</p>
+    <div class="tip">
+      每张的截法：点右边的「打开」→ 在新页面按 <code>F12</code> → <code>Ctrl+Shift+M</code> 切设备工具栏 →
+      尺寸填 <code>1440 × 900</code> → 刷新 → 点右上角三点菜单里的 <b>Capture screenshot</b>。
+      导出的 PNG 是纯页面、无浏览器外壳、无拼接。
+    </div>
+    <table>
+      <thead>
+        <tr><th style="width:150px">文件名</th><th style="width:200px">页面</th><th>直达链接</th></tr>
+      </thead>
+      <tbody id="rows"></tbody>
+    </table>
+    <script>
+      const P = "M0冒烟测试-20260928";
+      const items = [
+        ["home.png", "首页", "/?view=home"],
+        ["projects.png", "项目页", "/?view=projects"],
+        ["s0.png", "S0 立项输入", "/?view=workbench&stage=S0&project=" + P],
+        ["s1.png", "S1 选址与时间", "/?view=workbench&stage=S1&project=" + P],
+        ["s2.png", "S2 人物与主题", "/?view=workbench&stage=S2&project=" + P],
+        ["s3.png", "S3 参考例图", "/?view=workbench&stage=S3&project=" + P],
+        ["s4.png", "S4 黑板", "/?view=workbench&stage=S4&project=" + P],
+        ["s5.png", "S5 灵感归档", "/?view=workbench&stage=S5&project=" + P],
+        ["s6.png", "S6 布光", "/?view=workbench&stage=S6&project=" + P],
+        ["s7.png", "S7 导出方案", "/?view=workbench&stage=S7&project=" + P]
+      ];
+      document.getElementById("rows").innerHTML = items
+        .map(
+          ([file, label, url]) =>
+            `<tr><td><code>${file}</code></td><td>${label}</td><td><a href="${url}" target="_blank">打开 ${label}</a></td></tr>`
+        )
+        .join("");
+    </script>
+  </body>
+</html>
