@@ -226,12 +226,23 @@ def docx_to_pdf(docx_path: Path, pdf_path: Path) -> bool:
         print(f"PDF 转换失败：{error}", file=sys.stderr)
         return False
 
-    # Word 有时在进程退出之后才把文件写完，这里最多等 15 秒再确认
-    for _ in range(30):
+    # Word 有时在进程退出之后才把文件写完，这里最多等 20 秒再确认
+    for _ in range(40):
         if pdf_path.exists() and pdf_path.stat().st_size > 0:
-            return True
+            break
         time.sleep(0.5)
-    return False
+    else:
+        return False
+
+    # 关键校验：PDF 必须比 docx 新。否则说明 Word 保存失败（常见原因是残留的
+    # WINWORD 进程锁住了旧 PDF），会静默沿用上一版，看起来像"图片没更新"。
+    if pdf_path.stat().st_mtime < docx_path.stat().st_mtime:
+        print(
+            "PDF 没有更新，可能被残留的 Word 进程占用；请先结束所有 WINWORD 进程再重试",
+            file=sys.stderr,
+        )
+        return False
+    return True
 
 
 def main() -> int:
