@@ -20,10 +20,21 @@ REPO = Path(__file__).resolve().parent.parent
 QA = REPO / "docs" / "qa"
 
 
-def picture(doc, name: str, caption: str, width_cm: float = 15.0) -> None:
+def picture(doc, name: str, caption: str, width_cm: float = 9.6) -> None:
+    """按不放大原图的方式插图：截图约 490px 宽，9.6cm 对应约 130 DPI，不会再被拉伸糊掉。"""
     path = QA / name
     if not path.exists():
         return
+    try:
+        from PIL import Image
+
+        with Image.open(path) as probe:
+            px_width = probe.width
+        # 目标 DPI 下限 130：图片越窄，显示的物理尺寸越小，避免放大
+        max_width_cm = px_width / 130 * 2.54
+        width_cm = min(width_cm, max_width_cm)
+    except Exception:  # noqa: BLE001
+        pass
     paragraph = doc.add_paragraph()
     paragraph.alignment = WD_ALIGN_PARAGRAPH.CENTER
     paragraph.paragraph_format.space_before = base.Pt(6)

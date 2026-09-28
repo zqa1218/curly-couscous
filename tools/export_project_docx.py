@@ -209,7 +209,7 @@ def docx_to_pdf(docx_path: Path, pdf_path: Path) -> bool:
         "$w.Visible=$false;$w.DisplayAlerts=0;"
         f"$d=$w.Documents.Open('{docx_path}', $false, $true, $false);"
         f"$d.SaveAs2('{pdf_path}', 17);"
-        "$d.Close();$w.Quit(0)"
+        "$d.Close();$w.Quit()"
     )
     try:
         result = subprocess.run(
