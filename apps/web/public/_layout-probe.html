@@ -38,13 +38,14 @@
       if (params.get("fit") === "1") {
         document.body.classList.add("scaled");
       }
+      // 把本页的查询参数原样转发给应用，支持深链：
+      // /_layout-probe.html?view=workbench&stage=S4&project=<id>
+      const forward = new URLSearchParams(params);
+      forward.delete("fit");
+      const query = forward.toString();
       const frame = document.getElementById("frame");
-      const stage = params.get("stage");
-      if (stage && frame) {
-        // 通过 postMessage 通知应用切阶段，由应用侧监听
-        frame.addEventListener("load", () => {
-          frame.contentWindow.postMessage({ type: "goto-stage", stage }, "*");
-        });
+      if (query && frame) {
+        frame.src = "/?" + query;
       }
     </script>
   </body>

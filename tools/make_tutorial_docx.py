@@ -17,11 +17,11 @@ import build_shoot_plan as base  # noqa: E402
 from export_project_docx import docx_to_pdf  # noqa: E402
 
 REPO = Path(__file__).resolve().parent.parent
-QA = REPO / "docs" / "qa"
+QA = REPO / "docs" / "qa" / "hires"
 
 
-def picture(doc, name: str, caption: str, width_cm: float = 9.6) -> None:
-    """按不放大原图的方式插图：截图约 490px 宽，9.6cm 对应约 130 DPI，不会再被拉伸糊掉。"""
+def picture(doc, name: str, caption: str, width_cm: float = 15.0) -> None:
+    """按不放大原图的方式插图：截图 1440px 宽，15cm 对应约 244 DPI。"""
     path = QA / name
     if not path.exists():
         return
@@ -30,8 +30,8 @@ def picture(doc, name: str, caption: str, width_cm: float = 9.6) -> None:
 
         with Image.open(path) as probe:
             px_width = probe.width
-        # 目标 DPI 下限 130：图片越窄，显示的物理尺寸越小，避免放大
-        max_width_cm = px_width / 130 * 2.54
+        # 目标 DPI 下限 200：图片越窄，显示的物理尺寸越小，避免放大
+        max_width_cm = px_width / 200 * 2.54
         width_cm = min(width_cm, max_width_cm)
     except Exception:  # noqa: BLE001
         pass
@@ -91,7 +91,7 @@ def build(docx_path: Path) -> None:
             "没有密钥也能用，只是所有 AI 按钮会提示未配置，其余功能照常。",
         ],
     )
-    picture(doc, "m11-home.png", "图 1  首页")
+    picture(doc, "home.png", "图 1  首页")
 
     base.add_heading(doc, "3  一次拍摄的完整流程", 1)
     base.add_data_table(
@@ -126,7 +126,7 @@ def build(docx_path: Path) -> None:
             "单行输入里按回车保存，任何位置按 Ctrl+S 也能保存。",
         ],
     )
-    picture(doc, "m1-brief-form.png", "图 2  S0 立项输入")
+    picture(doc, "s0.png", "图 2  S0 立项输入")
 
     base.add_heading(doc, "4.2  S1 选址与时间", 2)
     body(
@@ -135,7 +135,7 @@ def build(docx_path: Path) -> None:
         "这些时间由程序按经纬度本地计算，不是模型猜的。下方六个时段按钮点一下就把具体时间写进方案。",
     )
     body(doc, "场地交给 AI：它会给出场地类型、光线条件、最佳时段、需要提前确认的限制，以及和当前风格的匹配理由。")
-    picture(doc, "m4-s1.png", "图 3  S1 选址与时间")
+    picture(doc, "s1.png", "图 3  S1 选址与时间")
 
     base.add_heading(doc, "4.3  S2 人物与主题", 2)
     body(
@@ -144,7 +144,7 @@ def build(docx_path: Path) -> None:
         "不确定的信息它会标明「需要核实」并说明该查什么，不编造设定。",
     )
     body(doc, "主题定调会给三个彼此有明显区别的方向，每个写清一句话主张、视觉走向和具体拍摄建议。")
-    picture(doc, "m5-s2.png", "图 4  S2 人物档案与主题定调")
+    picture(doc, "s2.png", "图 4  S2 人物档案与主题定调")
 
     base.add_heading(doc, "4.4  S3 参考例图", 2)
     body(
@@ -153,7 +153,7 @@ def build(docx_path: Path) -> None:
         "页面上方是按用途分好组的站点目录，填一个搜索词，所有站点的直达链接都会带上它。",
     )
     body(doc, "图存进三个口袋：抽象风格画作、优秀原画、优秀 Cos 作品。导入时记下来源链接、作者、站点与备注，重复的图会按内容自动跳过。")
-    picture(doc, "m3-sites.png", "图 5  S3 找图目录")
+    picture(doc, "s3.png", "图 5  S3 找图目录与口袋")
 
     base.add_heading(doc, "4.5  S4 黑板（核心）", 2)
     body(doc, "S4 从上到下四层：口袋翻页条、布置台、公共区、连线分组。")
@@ -168,8 +168,7 @@ def build(docx_path: Path) -> None:
             "连线把组成元素串成一组，可以连着连第三个、第四个；面板会显示「这一组（N 个组成元素）」，再由 AI 或你补全成完整想法。",
         ],
     )
-    picture(doc, "m6-s4-board.png", "图 6  S4 布置台与公共区")
-    picture(doc, "m7-group.png", "图 7  S4 分组补全")
+    picture(doc, "s4.png", "图 6  S4 布置台与公共区")
 
     base.add_heading(doc, "4.6  S5 灵感归档", 2)
     body(
@@ -178,7 +177,7 @@ def build(docx_path: Path) -> None:
         "灵感正文和完整策划，还能标作用环节（造型、光线、镜头、构图、道具、后期）。",
     )
     body(doc, "同步是增量的：你改过的文字、标好的环节、移出定稿的决定，重新同步都不会被覆盖。")
-    picture(doc, "m8-s5.png", "图 8  S5 灵感清单")
+    picture(doc, "s5.png", "图 7  S5 灵感清单")
 
     base.add_heading(doc, "4.7  S6 布光", 2)
     body(doc, "布光按每条定稿灵感各配一份，两种方式可以任选或并用。")
@@ -190,7 +189,7 @@ def build(docx_path: Path) -> None:
             "每条灵感还留了现场备注，用来记「现场只有两个插座」这类实际限制。",
         ],
     )
-    picture(doc, "m9-s6.png", "图 9  S6 灯位表")
+    picture(doc, "s6.png", "图 8  S6 灯位表")
 
     base.add_heading(doc, "4.8  S7 导出方案", 2)
     body(
@@ -198,7 +197,7 @@ def build(docx_path: Path) -> None:
         "点「导出方案」，约半分钟后在项目文件夹的 output 下生成 docx 与 PDF，页面上直接给下载链接。"
         "文档五章：项目概览、时间与地点（含黄金与蓝调时刻）、人物与主题、灵感与来源（每条灵感带来源图与元素）、布光。",
     )
-    picture(doc, "m10-s7.png", "图 10  S7 导出")
+    picture(doc, "s7.png", "图 9  S7 导出")
 
     base.add_heading(doc, "5  项目：新建、导入与蓝本", 1)
     body(doc, "每次拍摄是一个独立项目。项目页可以看到全部项目、新建，或者导入别人分享的项目包。")
@@ -211,7 +210,7 @@ def build(docx_path: Path) -> None:
             "以它为蓝本：填新项目名、这次的拍摄对象、这次想要的风格，让 AI 给出三个调整方向（哪些保留、哪些必须改、具体怎么改），确认后创建。新项目会继承蓝本的场景骨架、主题、风格与布光文本，人物换成你填的这个，参考图与公共区不复制。",
         ],
     )
-    picture(doc, "m11-projects.png", "图 11  项目页")
+    picture(doc, "projects.png", "图 10  项目页")
 
     base.add_heading(doc, "6  数据放在哪", 1)
     body(doc, "每个项目是 projects 目录下的一个文件夹，拷走整个文件夹就带走了全部内容：")

@@ -130,7 +130,9 @@ export function App() {
         }
         setProjects(list);
         const first = list[0];
-        if (first) {
+        // 有深链参数时不自动打开第一个企划，否则会把深链指定的企划与阶段覆盖掉
+        const deepLinked = new URLSearchParams(window.location.search).get("project");
+        if (first && !deepLinked) {
           void openProject(first.id);
         }
       })
@@ -141,6 +143,29 @@ export function App() {
       alive = false;
     };
   }, [openProject]);
+
+  // 深链：/?view=workbench&project=<id>&stage=S4，便于分享与截图
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const targetView = params.get("view");
+    const targetProject = params.get("project");
+    const targetStage = params.get("stage");
+    if (targetView === "home" || targetView === "projects" || targetView === "workbench") {
+      setView(targetView);
+    }
+    if (targetProject) {
+      // 先打开企划（它会带入企划里存的阶段），再覆盖成链接里指定的阶段
+      void openProject(targetProject).then(() => {
+        if (targetStage) {
+          setCurrent(targetStage as StageId);
+        }
+      });
+    } else if (targetStage) {
+      setCurrent(targetStage as StageId);
+    }
+    // 只在首次挂载时读取一次
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const createProject = useCallback(async (name: string) => {
     const meta = await api.createProject(name);
